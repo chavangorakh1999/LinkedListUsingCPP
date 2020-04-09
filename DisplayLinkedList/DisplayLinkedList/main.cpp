@@ -10,7 +10,7 @@
 using namespace std;
 struct Node
 {
-    int data;
+    int DATA;
     struct Node *next;
 }*head;
 void create(int a[],int n)
@@ -18,13 +18,13 @@ void create(int a[],int n)
     int i;
     struct Node *NewNode,*LastPtr=NULL;
     head=new Node;
-    head->data=a[0];
+    head->DATA=a[0];
     head->next=NULL;
     LastPtr=head;
     for(i=1;i<n;i++)
     {
         NewNode=new Node;
-        NewNode->data=a[i];
+        NewNode->DATA=a[i];
         NewNode->next=NULL;
         LastPtr->next=NewNode;
         LastPtr=NewNode;
@@ -36,7 +36,7 @@ void display(struct Node *TempPtr)
 {
     while(TempPtr!=NULL)
     {
-        cout<<TempPtr->data<<" ";
+        cout<<TempPtr->DATA<<" ";
         TempPtr=TempPtr->next;
         
     }
