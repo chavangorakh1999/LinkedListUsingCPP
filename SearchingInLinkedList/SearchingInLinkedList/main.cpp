@@ -61,11 +61,31 @@ Node* Rsearch(struct Node *TempPtr,int key)
         return TempPtr;
     return Rsearch(TempPtr->next, key);
 }
+//Improving The Linear Search
+Node * Isearch(struct Node *TempPtr,int key)
+{
+    struct Node *TailPtr=NULL;
+    while(TempPtr)
+    {
+        if(key==TempPtr->data)
+        {
+            TailPtr->next=TempPtr->next;
+            TempPtr->next=head;
+            head=TempPtr;
+            return TempPtr;
+        }
+        TailPtr=TempPtr;
+        TempPtr=TempPtr->next;
+    }
+    return NULL;
+}
 int main()
 {
    int a[]={1,2,3,4,5};
     create(a,5);
-    display(head);
-    cout<<endl<<Rsearch(head, 1)<<endl;
+   
+    cout<<endl<<Isearch(head, 5)<<endl;
+     cout<<endl<<Isearch(head, 2)<<endl;
+     display(head);
     return 0;
 }
