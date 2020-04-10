@@ -86,14 +86,42 @@ int Radd(struct Node *TempPtr)
         return 0;
     }
 }
+//Iterative Version for searching max
+int max(struct Node *TempPtr)
+{
+    int max=INT32_MIN;
+    while(TempPtr)
+    {
+        if(max<TempPtr->DATA)
+            max=TempPtr->DATA;
+        TempPtr=TempPtr->next;
+    }
+    return max;
+}
+//Recursive function for searching max
+int Rmax(struct Node *TempPtr)
+{
+    int x;
+    if(!TempPtr)
+    {
+        return INT32_MIN;
+    }
+    else
+    {
+        x=Rmax(TempPtr->next);
+        return x>TempPtr->DATA?x:TempPtr->DATA;
+    }
+    return 0;
+}
 int main()
 {
     int a[]={1,2,3,4,5};
     create(a,5);
     display(head);
-    cout<<endl<<Rcount(head)<<endl;
-    cout<<Add(head)<<endl;
-    cout<<Radd(head)<<endl;
+//    cout<<endl<<Rcount(head)<<endl;
+//    cout<<Add(head)<<endl;
+//    cout<<Radd(head)<<endl;
+    cout<<endl<<Rmax(head)<<endl;
     
     return 0;
 }
