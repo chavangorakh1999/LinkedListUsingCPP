@@ -33,12 +33,13 @@ void create(int a[],int n)
 }
 void display(struct Node *tempptr)
 {
+    
     if(tempptr!=NULL)
     {
         cout<<tempptr->data<<" ";
         display(tempptr->next);
-        
-        
+
+
     }
 }
 //Iterative Version Of searching Key Element
@@ -84,8 +85,8 @@ int main()
    int a[]={1,2,3,4,5};
     create(a,5);
    
-    cout<<endl<<Isearch(head, 5)<<endl;
-     cout<<endl<<Isearch(head, 2)<<endl;
+//    cout<<endl<<Isearch(head, 5)<<endl;
+//     cout<<endl<<Isearch(head, 2)<<endl;
      display(head);
     return 0;
 }
