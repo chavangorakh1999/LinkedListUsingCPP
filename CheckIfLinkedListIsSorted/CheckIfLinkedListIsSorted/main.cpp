@@ -91,11 +91,24 @@ void ReverseElement(struct Node *TempPtr,int size)
         TempPtr=TempPtr->next;
     }
 }
+void ReverseLinks(struct Node *HeadPtr)
+{
+    struct Node *MidPtr,*TailPtr;
+    MidPtr=TailPtr=NULL;
+    while(HeadPtr!=NULL)
+    {
+        TailPtr=MidPtr;
+        MidPtr=HeadPtr;
+        HeadPtr=HeadPtr->next;
+        MidPtr->next=TailPtr;
+    }
+    head=MidPtr;
+}
 int main()
 {
    int a[]={2,2,4,4,5};
     create(a,5);
-    ReverseElement(head, 5);
+    ReverseLinks(head);
      display(head);
     return 0;
 }
