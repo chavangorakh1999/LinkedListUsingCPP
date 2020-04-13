@@ -68,6 +68,7 @@ void concat(struct Node* first,struct Node* second)
     while(TempPtr->next!=NULL)
     {TempPtr=TempPtr->next;}
     TempPtr->next=second;
+    bhead=NULL;
 }
 void RecReverse(struct Node *TailPtr,struct Node *HeadPtr)
 {
