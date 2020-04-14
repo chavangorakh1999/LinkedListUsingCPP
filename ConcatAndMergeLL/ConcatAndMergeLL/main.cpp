@@ -117,23 +117,48 @@ void Merge(struct Node* head1,struct Node* head2)
     if(head1)tail->next=head1;
     if(head2)tail->next=head2;
 }
+void loop(struct Node* temp)
+{
+    
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    temp->next=head->next->next;
+}
+int isLoop(struct Node *tempPtr)
+{
+    struct Node *p,*q;
+    p=q=tempPtr;
+    do
+    {
+        p=p->next;
+        q=q->next;
+        q=q?q->next:NULL;
+    }while(p&&q&&p!=q);
+    if(p==q)
+        return 1;
+    else
+        return 0;
+}
  int main()
  {
     int a[]={2,3,6,8,12};
-     int b[]={4,5,7,9,10};
+//     int b[]={4,5,7,9,10};
      create(a,5);
-     screate(b,5);
+//     screate(b,5);
     
  //    cout<<endl<<Isearch(head, 5)<<endl;
  //     cout<<endl<<Isearch(head, 2)<<endl;
  //    RecReverse(NULL, head);
-      display(head);
-     cout<<endl;
-     display(second);
-     cout<<endl;
-     Merge(head, second);
-     display(third);
-     
+//      display(head);
+//     cout<<endl;
+//     display(second);
+//     cout<<endl;
+//     Merge(head, second);
+//     display(third);
+//     loop(head);
+     cout<<isLoop(head);
      return 0;
  }
 
