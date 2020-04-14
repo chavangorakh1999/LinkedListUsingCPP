@@ -14,7 +14,7 @@ struct Node
 {
     int data;
     struct Node *next;
-}*head,*bhead;
+}*head=NULL,*second=NULL,*third;
 void create(int a[],int n)
 {
     int i;
@@ -37,10 +37,10 @@ void screate(int b[],int n)
 {
     int i;
     struct Node *NewNode,*TailNode;
-    bhead=new Node;
-    bhead->data=b[0];
-    bhead->next=NULL;
-    TailNode=bhead;
+    second=new Node;
+    second->data=b[0];
+    second->next=NULL;
+    TailNode=second;
     for(i=1;i<n;i++)
     {
         NewNode=new Node;
@@ -68,7 +68,7 @@ void concat(struct Node* first,struct Node* second)
     while(TempPtr->next!=NULL)
     {TempPtr=TempPtr->next;}
     TempPtr->next=second;
-    bhead=NULL;
+    second=NULL;
 }
 void RecReverse(struct Node *TailPtr,struct Node *HeadPtr)
 {
@@ -80,6 +80,10 @@ void RecReverse(struct Node *TailPtr,struct Node *HeadPtr)
     else{
         head=TailPtr;
     }
+}
+void Merge(struct Node *head,struct Node *second)
+{
+ 
 }
 int main()
 {
@@ -93,10 +97,11 @@ int main()
 //    RecReverse(NULL, head);
      display(head);
     cout<<endl;
-    display(bhead);
+    display(second);
     cout<<endl;
-    concat(head, bhead);
+    concat(head, second);
     display(head);
     
     return 0;
 }
+
