@@ -32,6 +32,43 @@ void create(int a[],int n)
     }
     temp->next=head;
 }
+void Insert(struct Node*p,int pos,int val)
+{
+    struct Node*t;
+    
+    
+    if(pos==0)
+    {
+        t=new Node;
+        t->data=val;
+        if(head==NULL)
+        {
+            head=t;
+            head->next=head;
+        }
+        else
+        {
+            while(p->next!=head)
+            {
+                p=p->next;
+            }
+            t->next=p->next;
+            p->next=t;
+        }
+    }
+    else
+    {
+        for(int i=0;i<pos-1;i++)
+        {
+            p=p->next;
+        }
+        t=new Node;
+        t->data=val;
+        t->next=p->next;
+        p->next=t;
+        
+        }
+}
 //iterative version
 void display(struct Node*p)
 {
@@ -57,6 +94,7 @@ void Display(struct Node *p)
 int main() {
     int a[]={1,2,3,4,5};
     create(a,5);
+    Insert(head, 0 , 8);
     Display(head);
     return 0;
 }
