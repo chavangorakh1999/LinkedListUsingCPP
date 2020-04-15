@@ -32,11 +32,25 @@ void create(int a[],int n)
     }
     temp->next=head;
 }
+int Length(struct Node*p)
+{
+    int len=0;
+    do
+    {
+        len++;
+        p=p->next;
+    }while(p!=head);
+    return len;
+}
 void Insert(struct Node*p,int pos,int val)
 {
     struct Node*t;
     
-    
+    if(pos<0||pos>Length(head))
+    {    cout<<"Not Added"<<endl;
+    return;
+        
+    }
     if(pos==0)
     {
         t=new Node;
@@ -94,7 +108,7 @@ void Display(struct Node *p)
 int main() {
     int a[]={1,2,3,4,5};
     create(a,5);
-    Insert(head, 0 , 8);
+    Insert(head, 10 , 8);
     Display(head);
     return 0;
 }
