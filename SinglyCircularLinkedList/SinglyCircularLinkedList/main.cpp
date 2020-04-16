@@ -42,6 +42,35 @@ int Length(struct Node*p)
     }while(p!=head);
     return len;
 }
+int Delete(struct Node*temp,int pos)
+{
+    int x=0;
+    
+    if(pos==1)
+    {
+        while(temp->next!=head)
+        {
+            temp=temp->next;
+        }
+        temp->next=head->next;
+        x=head->data;
+        delete head;
+        head=temp->next;
+    }
+    else{
+        for(int i=0;i<pos-2;i++)
+        {
+            temp=temp->next;
+        }
+        struct Node*current;
+        current=temp->next;
+        temp->next=current->next;
+        x=current->data;
+        delete current;
+        current=temp->next;
+    }
+    return x;
+}
 void Insert(struct Node*p,int pos,int val)
 {
     struct Node*t;
@@ -108,7 +137,7 @@ void Display(struct Node *p)
 int main() {
     int a[]={1,2,3,4,5};
     create(a,5);
-    Insert(head, 10 , 8);
+    cout<<Delete(head, 2)<<endl;
     Display(head);
     return 0;
 }
