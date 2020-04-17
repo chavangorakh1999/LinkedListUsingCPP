@@ -45,7 +45,11 @@ int Length(struct Node*p)
 int Delete(struct Node*temp,int pos)
 {
     int x=0;
-    
+    if(pos<0||pos>Length(head))
+    {
+        cout<<"Not Deleted";
+        return 0;
+    }
     if(pos==1)
     {
         while(temp->next!=head)
@@ -137,7 +141,7 @@ void Display(struct Node *p)
 int main() {
     int a[]={1,2,3,4,5};
     create(a,5);
-    cout<<Delete(head, 2)<<endl;
+    cout<<Delete(head, 5)<<endl;
     Display(head);
     return 0;
 }
