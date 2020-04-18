@@ -29,6 +29,7 @@ public:
 //    void create();
     int Length();
     void insert(int data,int position);
+    int Delete(int index);
     void Display();
     
 };
@@ -118,13 +119,42 @@ Doubly::~Doubly()
     }
     
 }
+int Doubly::Delete(int index)
+{
+    Node*temp=head;
+    int x=0;
+    if(index==1)
+    {
+        head=temp->next;
+        x=temp->data;
+        temp->next=NULL;
+        delete temp;
+        if(head)
+        {
+            head->prev=NULL;
+        }
+    }
+    else{
+        for(int i=0;i<index-1;i++)
+            temp=temp->next;
+        temp->prev->next=temp->next;
+        if(temp->next)
+        {
+        temp->next->prev=temp->prev;
+        }
+        x=temp->data;
+        delete temp;
+    }
+    return x;
+}
 
 
 int main() {
     int A[]={10,20,30,40,50};
     Doubly d(A,5);
 //    d.Display();
-   d.insert(5, 6);
+//   d.insert(5, 1);
+    d.Delete(5);
      d.Display();
     return 0;
 }
