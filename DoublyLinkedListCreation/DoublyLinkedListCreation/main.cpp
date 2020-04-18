@@ -25,22 +25,14 @@ public:
         head=NULL;
     }
     Doubly(int A[],int n);
-    void create();
-    int length();
-    void Display();
     ~Doubly();
+//    void create();
+    int Length();
+    void insert(int data,int position);
+    void Display();
+    
 };
-int Doubly::length()
-{
-    Node*temp=head;
-    int len=0;
-    while(temp)
-    {
-        len++;
-        temp=temp->next;
-    }
-    return len;
-}
+
 Doubly::Doubly(int A[],int n)
 {
     Node* temp,*last,*NewNode;
@@ -70,6 +62,49 @@ void Doubly::Display()
     }
     
 }
+int Doubly::Length()
+{
+    Node*temp=head;
+    int len=0;
+    while(temp)
+    {
+        len++;
+        temp=temp->next;
+    }
+    return len;
+}
+void Doubly:: insert(int data,int index)
+{
+    Node*temp=head,*NewNode;
+    if(index<0||index>Length())
+    {
+        cout<<"Cannot be inserted";
+        return;
+    }
+    if(index==0)
+    {
+        NewNode=new Node;
+        NewNode->data=data;
+        NewNode->next=temp;
+        temp->prev=NewNode;
+        NewNode->prev=NULL;
+        head=temp->prev;
+    }
+    else
+    {
+        for(int i=0;i<index-1;i++)
+            temp=temp->next;
+        NewNode=new Node;
+        NewNode->data=data;
+        NewNode->prev=temp;
+        NewNode->next=temp->next;
+        
+        if(temp->next)
+            NewNode->next->prev=NewNode;
+        temp->next=NewNode;
+            
+    }
+}
 Doubly::~Doubly()
 {
     Node*temp=NULL;
@@ -84,9 +119,12 @@ Doubly::~Doubly()
     
 }
 
+
 int main() {
     int A[]={10,20,30,40,50};
     Doubly d(A,5);
-    d.Display();
+//    d.Display();
+   d.insert(5, 6);
+     d.Display();
     return 0;
 }
