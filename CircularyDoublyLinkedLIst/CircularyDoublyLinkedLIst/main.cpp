@@ -67,7 +67,7 @@ void Doubly::Display()
 int Doubly::Length()
 {
     Node*temp=head;
-    int len=0;
+    int len=1;
     while(temp->next!=head)
     {
         len++;
@@ -88,8 +88,9 @@ void Doubly:: insert(int data,int index)
         NewNode=new Node;
         NewNode->data=data;
         NewNode->next=temp;
+        NewNode->prev=temp->prev;
         temp->prev=NewNode;
-        NewNode->prev=NULL;
+        NewNode->prev->next=NewNode;
         head=temp->prev;
     }
     else
@@ -100,7 +101,6 @@ void Doubly:: insert(int data,int index)
         NewNode->data=data;
         NewNode->prev=temp;
         NewNode->next=temp->next;
-        
         if(temp->next)
             NewNode->next->prev=NewNode;
         temp->next=NewNode;
@@ -128,11 +128,12 @@ int Doubly::Delete(int index)
     {
         head=temp->next;
         x=temp->data;
+        temp->prev->next=head;
         temp->next=NULL;
         delete temp;
         if(head)
         {
-            head->prev=NULL;
+            head->prev=temp->prev;
         }
     }
     else{
@@ -154,8 +155,9 @@ int main() {
     int A[]={10,20,30,40,50};
     Doubly d(A,5);
 //    d.Display();
-//   d.insert(5, 1);
- //   d.Delete(5);
+   d.insert(5, 5);
+    d.insert(5, 6);
+   d.Delete(1);
      d.Display();
     return 0;
 }
